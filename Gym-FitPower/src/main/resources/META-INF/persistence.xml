@@ -3,6 +3,18 @@
   <persistence-unit name="fitpower" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>fitpower.model.Gym</class>
+    <class>fitpower.model.Trainer</class>
+    <class>fitpower.model.Customer</class>
+    <class>fitpower.model.Nutritionist</class>
+    <class>fitpower.model.NutritionPlan</class>
+    <class>fitpower.model.ProgressDiaryNutrition</class>
+    <class>fitpower.model.NotificationNutrition</class>
+    <class>fitpower.model.TrainingPlan</class>
+    <class>fitpower.model.ProgressDailyTraining</class>
+    <class>fitpower.model.Exercise</class>
+    <class>fitpower.model.Repetition</class>
+    <class>fitpower.model.Serie</class>
+    <class>fitpower.model.NotificationTraining</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/fitpower?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
