@@ -10,11 +10,12 @@
     <class>fitpower.model.ProgressDiaryNutrition</class>
     <class>fitpower.model.NotificationNutrition</class>
     <class>fitpower.model.TrainingPlan</class>
-    <class>fitpower.model.ProgressDailyTraining</class>
     <class>fitpower.model.Exercise</class>
     <class>fitpower.model.Repetition</class>
     <class>fitpower.model.Serie</class>
     <class>fitpower.model.NotificationTraining</class>
+    <class>fitpower.model.Routine</class>
+    <class>fitpower.model.ProgressDairyTraining</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/fitpower?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
