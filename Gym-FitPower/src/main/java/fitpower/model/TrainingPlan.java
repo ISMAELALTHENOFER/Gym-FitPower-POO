@@ -5,6 +5,7 @@
 package fitpower.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,16 @@ public class TrainingPlan implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String goals;
+    private Boolean asset;
+    private LocalDateTime date;
+
+    public TrainingPlan(Long id, String goals, Boolean asset, LocalDateTime date) {
+        this.id = id;
+        this.goals = goals;
+        this.asset = asset;
+        this.date = date;
+    }
 
     public Long getId() {
         return id;
@@ -54,5 +65,29 @@ public class TrainingPlan implements Serializable {
     public String toString() {
         return "fitpower.model.TrainingPlan[ id=" + id + " ]";
     }
-    
+
+    public String getGoals() {
+        return goals;
+    }
+
+    public void setGoals(String goals) {
+        this.goals = goals;
+    }
+
+    public Boolean getAsset() {
+        return asset;
+    }
+
+    public void setAsset(Boolean asset) {
+        this.asset = asset;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
 }

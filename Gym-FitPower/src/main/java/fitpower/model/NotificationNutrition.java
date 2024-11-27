@@ -5,6 +5,7 @@
 package fitpower.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,14 @@ public class NotificationNutrition implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private LocalDateTime date;
+    private String observation;
+
+    public NotificationNutrition(Long id, LocalDateTime date, String observation) {
+        this.id = id;
+        this.date = date;
+        this.observation = observation;
+    }
 
     public Long getId() {
         return id;
@@ -54,5 +63,21 @@ public class NotificationNutrition implements Serializable {
     public String toString() {
         return "fitpower.model.NotificationNutrition[ id=" + id + " ]";
     }
-    
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public String getObservation() {
+        return observation;
+    }
+
+    public void setObservation(String observation) {
+        this.observation = observation;
+    }
+
 }

@@ -5,6 +5,7 @@
 package fitpower.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,12 +16,20 @@ import javax.persistence.Id;
  * @author Ismael
  */
 @Entity
-public class ProgressDailyTraining implements Serializable {
+public class Routine implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String name;
+    private LocalDateTime creationdate;
+
+    public Routine(Long id, String name, LocalDateTime creationdate) {
+        this.id = id;
+        this.name = name;
+        this.creationdate = creationdate;
+    }
 
     public Long getId() {
         return id;
@@ -40,10 +49,10 @@ public class ProgressDailyTraining implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProgressDailyTraining)) {
+        if (!(object instanceof Routine)) {
             return false;
         }
-        ProgressDailyTraining other = (ProgressDailyTraining) object;
+        Routine other = (Routine) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -52,7 +61,23 @@ public class ProgressDailyTraining implements Serializable {
 
     @Override
     public String toString() {
-        return "fitpower.model.ProgressDailyTraining[ id=" + id + " ]";
+        return "fitpower.model.Routine[ id=" + id + " ]";
     }
-    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDateTime getCreationdate() {
+        return creationdate;
+    }
+
+    public void setCreationdate(LocalDateTime creationdate) {
+        this.creationdate = creationdate;
+    }
+
 }

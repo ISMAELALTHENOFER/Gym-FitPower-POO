@@ -5,6 +5,7 @@
 package fitpower.model;
 
 import java.io.Serializable;
+import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,20 @@ public class Nutritionist implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String name;
+    private String lastName;
+    private String dni;
+    private Gym gym;
+    private Map<String, Customer> customer;
+
+    public Nutritionist(Long id, String name, String lastName, String dni, Gym gym, Map<String, Customer> customer) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.dni = dni;
+        this.gym = gym;
+        this.customer = customer;
+    }
 
     public Long getId() {
         return id;
@@ -54,5 +69,45 @@ public class Nutritionist implements Serializable {
     public String toString() {
         return "fitpower.model.Nutritionist[ id=" + id + " ]";
     }
-    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public Gym getGym() {
+        return gym;
+    }
+
+    public void setGym(Gym gym) {
+        this.gym = gym;
+    }
+
+    public Map<String, Customer> getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Map<String, Customer> customer) {
+        this.customer = customer;
+    }
+
 }

@@ -5,6 +5,7 @@
 package fitpower.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,17 +16,17 @@ import javax.persistence.Id;
  * @author Ismael
  */
 @Entity
-public class Exercise implements Serializable {
+public class ProgressDairyTraining implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
+    private LocalDateTime date;
 
-    public Exercise(Long id, String name) {
+    public ProgressDairyTraining(Long id, LocalDateTime date) {
         this.id = id;
-        this.name = name;
+        this.date = date;
     }
 
     public Long getId() {
@@ -46,10 +47,10 @@ public class Exercise implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Exercise)) {
+        if (!(object instanceof ProgressDairyTraining)) {
             return false;
         }
-        Exercise other = (Exercise) object;
+        ProgressDairyTraining other = (ProgressDairyTraining) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -58,15 +59,15 @@ public class Exercise implements Serializable {
 
     @Override
     public String toString() {
-        return "fitpower.model.Exercise[ id=" + id + " ]";
+        return "fitpower.model.ProgressDailyTraining[ id=" + id + " ]";
     }
 
-    public String getName() {
-        return name;
+    public LocalDateTime getDate() {
+        return date;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
 }

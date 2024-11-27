@@ -5,6 +5,7 @@
 package fitpower.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,9 +19,17 @@ import javax.persistence.Id;
 public class Serie implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public Serie(Long id, int amount, LocalDateTime restTime) {
+        this.id = id;
+        this.amount = amount;
+        this.restTime = restTime;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private int amount;
+    private LocalDateTime restTime;
 
     public Long getId() {
         return id;
@@ -54,5 +63,21 @@ public class Serie implements Serializable {
     public String toString() {
         return "fitpower.model.Serie[ id=" + id + " ]";
     }
-    
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public LocalDateTime getRestTime() {
+        return restTime;
+    }
+
+    public void setRestTime(LocalDateTime restTime) {
+        this.restTime = restTime;
+    }
+
 }
