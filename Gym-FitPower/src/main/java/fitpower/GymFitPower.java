@@ -1,8 +1,9 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package fitpower;
+
+import fitpower.dao.Conexion;
 
 /**
  *
@@ -11,6 +12,7 @@ package fitpower;
 public class GymFitPower {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        new Conexion();
+        System.out.println("Funciona!");
     }
 }
