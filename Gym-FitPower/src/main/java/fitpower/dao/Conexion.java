@@ -27,7 +27,7 @@ public class Conexion {
 
     private static void conectar() {
         if (em == null) {
-            Conexion.emf = Persistence.createEntityManagerFactory("fitpower");
+            Conexion.emf = Persistence.createEntityManagerFactory("fitpower_Gym");
             Conexion.em = Conexion.emf.createEntityManager();
         }
     }
