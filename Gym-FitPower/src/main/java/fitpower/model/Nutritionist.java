@@ -28,6 +28,9 @@ public class Nutritionist implements Serializable {
     private Gym gym;
     private Map<String, Customer> customer;
 
+    public Nutritionist() {
+    }
+
     public Nutritionist(Long id, String name, String lastName, String dni, Gym gym, Map<String, Customer> customer) {
         this.id = id;
         this.name = name;
@@ -35,14 +38,6 @@ public class Nutritionist implements Serializable {
         this.dni = dni;
         this.gym = gym;
         this.customer = customer;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -68,6 +63,14 @@ public class Nutritionist implements Serializable {
     @Override
     public String toString() {
         return "fitpower.model.Nutritionist[ id=" + id + " ]";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -27,20 +27,15 @@ public class Trainer implements Serializable {
     private String dni;
     private Map<String, Customer> customer;
 
+    public Trainer() {
+    }
+
     public Trainer(Long id, String name, String lastName, String dni, Map<String, Customer> customer) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.dni = dni;
         this.customer = customer;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -66,6 +61,14 @@ public class Trainer implements Serializable {
     @Override
     public String toString() {
         return "fitpower.model.Trainer[ id=" + id + " ]";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -31,6 +31,9 @@ public class Customer implements Serializable {
     private List<Routine> routines;
     private List<NutritionPlan> nutritionPlans;
 
+    public Customer() {
+    }
+
     public Customer(Long id, String name, String lastName, List<String> goal, Gym gym, List<NotificationTraining> notificationsTrainings, List<NotificationNutrition> notificationNutritions, List<Routine> routines, List<NutritionPlan> nutritionPlans) {
         this.id = id;
         this.name = name;
@@ -41,14 +44,6 @@ public class Customer implements Serializable {
         this.notificationNutritions = notificationNutritions;
         this.routines = routines;
         this.nutritionPlans = nutritionPlans;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -76,36 +71,12 @@ public class Customer implements Serializable {
         return "fitpower.model.Customer[ id=" + id + " ]";
     }
 
-    public List<String> getGoal() {
-        return goal;
+    public Long getId() {
+        return id;
     }
 
-    public void setGoal(List<String> goal) {
-        this.goal = goal;
-    }
-
-    public Gym getGym() {
-        return gym;
-    }
-
-    public void setGym(Gym gym) {
-        this.gym = gym;
-    }
-
-    public List<Routine> getRoutines() {
-        return routines;
-    }
-
-    public void setRoutines(List<Routine> routines) {
-        this.routines = routines;
-    }
-
-    public List<NutritionPlan> getNutritionPlans() {
-        return nutritionPlans;
-    }
-
-    public void setNutritionPlans(List<NutritionPlan> nutritionPlans) {
-        this.nutritionPlans = nutritionPlans;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -124,6 +95,22 @@ public class Customer implements Serializable {
         this.lastName = lastName;
     }
 
+    public List<String> getGoal() {
+        return goal;
+    }
+
+    public void setGoal(List<String> goal) {
+        this.goal = goal;
+    }
+
+    public Gym getGym() {
+        return gym;
+    }
+
+    public void setGym(Gym gym) {
+        this.gym = gym;
+    }
+
     public List<NotificationTraining> getNotificationsTrainings() {
         return notificationsTrainings;
     }
@@ -138,6 +125,22 @@ public class Customer implements Serializable {
 
     public void setNotificationNutritions(List<NotificationNutrition> notificationNutritions) {
         this.notificationNutritions = notificationNutritions;
+    }
+
+    public List<Routine> getRoutines() {
+        return routines;
+    }
+
+    public void setRoutines(List<Routine> routines) {
+        this.routines = routines;
+    }
+
+    public List<NutritionPlan> getNutritionPlans() {
+        return nutritionPlans;
+    }
+
+    public void setNutritionPlans(List<NutritionPlan> nutritionPlans) {
+        this.nutritionPlans = nutritionPlans;
     }
 
 }

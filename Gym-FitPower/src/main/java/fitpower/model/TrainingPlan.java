@@ -26,19 +26,14 @@ public class TrainingPlan implements Serializable {
     private Boolean asset;
     private LocalDateTime date;
 
+    public TrainingPlan() {
+    }
+
     public TrainingPlan(Long id, String goals, Boolean asset, LocalDateTime date) {
         this.id = id;
         this.goals = goals;
         this.asset = asset;
         this.date = date;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -64,6 +59,14 @@ public class TrainingPlan implements Serializable {
     @Override
     public String toString() {
         return "fitpower.model.TrainingPlan[ id=" + id + " ]";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getGoals() {

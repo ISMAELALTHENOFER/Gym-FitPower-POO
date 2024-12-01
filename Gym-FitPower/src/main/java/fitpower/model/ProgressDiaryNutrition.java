@@ -27,6 +27,9 @@ public class ProgressDiaryNutrition implements Serializable {
     private Float dailyFats;
     private Float currentWeight;
 
+    public ProgressDiaryNutrition() {
+    }
+
     public ProgressDiaryNutrition(Long id, Float dailyCalories, Float dailyProteins, Float dailyCarbohydrates, Float dailyFats, Float currentWeight) {
         this.id = id;
         this.dailyCalories = dailyCalories;
@@ -34,14 +37,6 @@ public class ProgressDiaryNutrition implements Serializable {
         this.dailyCarbohydrates = dailyCarbohydrates;
         this.dailyFats = dailyFats;
         this.currentWeight = currentWeight;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -67,6 +62,14 @@ public class ProgressDiaryNutrition implements Serializable {
     @Override
     public String toString() {
         return "fitpower.model.ProgressDiaryNutrition[ id=" + id + " ]";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Float getDailyCalories() {

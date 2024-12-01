@@ -24,17 +24,12 @@ public class ProgressDairyTraining implements Serializable {
     private Long id;
     private LocalDateTime date;
 
+    public ProgressDairyTraining() {
+    }
+
     public ProgressDairyTraining(Long id, LocalDateTime date) {
         this.id = id;
         this.date = date;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -60,6 +55,14 @@ public class ProgressDairyTraining implements Serializable {
     @Override
     public String toString() {
         return "fitpower.model.ProgressDailyTraining[ id=" + id + " ]";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public LocalDateTime getDate() {

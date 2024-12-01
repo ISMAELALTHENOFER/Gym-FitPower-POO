@@ -25,19 +25,14 @@ public class Gym implements Serializable {
     private String address;
     private String phone;
 
+    public Gym() {
+    }
+
     public Gym(Long id, String name, String address, String phone) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.phone = phone;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -63,6 +58,14 @@ public class Gym implements Serializable {
     @Override
     public String toString() {
         return "fitpower.model.gym[ id=" + id + " ]";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

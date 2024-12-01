@@ -25,18 +25,13 @@ public class Routine implements Serializable {
     private String name;
     private LocalDateTime creationdate;
 
+    public Routine() {
+    }
+
     public Routine(Long id, String name, LocalDateTime creationdate) {
         this.id = id;
         this.name = name;
         this.creationdate = creationdate;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -62,6 +57,14 @@ public class Routine implements Serializable {
     @Override
     public String toString() {
         return "fitpower.model.Routine[ id=" + id + " ]";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

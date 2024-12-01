@@ -34,6 +34,9 @@ public class NutritionPlan implements Serializable {
     private LocalDateTime enddate;
     private String recommendation;
 
+    public NutritionPlan() {
+    }
+
     public NutritionPlan(Long id, String goals, Float targetWeight, Float initialWeight, Boolean asset, Float dailyCalories, Float dailyProteins, Float dailyCarbohydrates, Float dailyFats, LocalDateTime startdate, LocalDateTime enddate, String recommendation) {
         this.id = id;
         this.goals = goals;
@@ -47,14 +50,6 @@ public class NutritionPlan implements Serializable {
         this.startdate = startdate;
         this.enddate = enddate;
         this.recommendation = recommendation;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -80,6 +75,14 @@ public class NutritionPlan implements Serializable {
     @Override
     public String toString() {
         return "fitpower.model.NutritionPlan[ id=" + id + " ]";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getGoals() {

@@ -31,12 +31,7 @@ public class Serie implements Serializable {
     private int amount;
     private LocalDateTime restTime;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Serie() {
     }
 
     @Override
@@ -62,6 +57,14 @@ public class Serie implements Serializable {
     @Override
     public String toString() {
         return "fitpower.model.Serie[ id=" + id + " ]";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getAmount() {

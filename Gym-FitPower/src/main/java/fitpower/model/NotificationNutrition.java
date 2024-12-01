@@ -25,18 +25,13 @@ public class NotificationNutrition implements Serializable {
     private LocalDateTime date;
     private String observation;
 
+    public NotificationNutrition() {
+    }
+
     public NotificationNutrition(Long id, LocalDateTime date, String observation) {
         this.id = id;
         this.date = date;
         this.observation = observation;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -62,6 +57,14 @@ public class NotificationNutrition implements Serializable {
     @Override
     public String toString() {
         return "fitpower.model.NotificationNutrition[ id=" + id + " ]";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public LocalDateTime getDate() {

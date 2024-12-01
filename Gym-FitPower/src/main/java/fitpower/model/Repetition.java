@@ -23,17 +23,12 @@ public class Repetition implements Serializable {
     private Long id;
     private int amount;
 
-    public Long getId() {
-        return id;
+    public Repetition() {
     }
 
     public Repetition(Long id, int amount) {
         this.id = id;
         this.amount = amount;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -59,6 +54,14 @@ public class Repetition implements Serializable {
     @Override
     public String toString() {
         return "fitpower.model.Repetition[ id=" + id + " ]";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getAmount() {
