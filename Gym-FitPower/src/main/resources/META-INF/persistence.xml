@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence           http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-  <persistence-unit name="fitpower" transaction-type="RESOURCE_LOCAL">
-    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>fitpower.model.Gym</class>
-    <class>fitpower.model.Trainer</class>
-    <class>fitpower.model.Customer</class>
-    <class>fitpower.model.Nutritionist</class>
-    <class>fitpower.model.NutritionPlan</class>
-    <class>fitpower.model.ProgressDiaryNutrition</class>
-    <class>fitpower.model.NotificationNutrition</class>
-    <class>fitpower.model.TrainingPlan</class>
-    <class>fitpower.model.Exercise</class>
-    <class>fitpower.model.Repetition</class>
-    <class>fitpower.model.Serie</class>
-    <class>fitpower.model.NotificationTraining</class>
-    <class>fitpower.model.Routine</class>
-    <class>fitpower.model.ProgressDairyTraining</class>
-    <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/fitpower?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
-      <property name="javax.persistence.jdbc.user" value="root"/>
-      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="Cuenta.1234"/>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
-    </properties>
-  </persistence-unit>
+    <persistence-unit name="fitpower_Gym" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>fitpower.model.Customer</class>
+        <class>fitpower.model.Exercise</class>
+        <class>fitpower.model.Gym</class>
+        <class>fitpower.model.NotificationNutrition</class>
+        <class>fitpower.model.NotificationTraining</class>
+        <class>fitpower.model.NutritionPlan</class>
+        <class>fitpower.model.Nutritionist</class>
+        <class>fitpower.model.ProgressDairyTraining</class>
+        <class>fitpower.model.ProgressDiaryNutrition</class>
+        <class>fitpower.model.Repetition</class>
+        <class>fitpower.model.Routine</class>
+        <class>fitpower.model.Serie</class>
+        <class>fitpower.model.Trainer</class>
+        <class>fitpower.model.TrainingPlan</class>
+        <class>fitpower.model.User</class>
+        <class>fitpower.model.UserType</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gym?zeroDateTimeBehavior=CONVERT_TO_NULL&amp;serverTimezone=America/Argentina/Buenos_Aires"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.password" value="Cuenta.1234"/>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+        </properties>
+    </persistence-unit>
 </persistence>
