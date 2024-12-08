@@ -133,5 +133,26 @@ public class UserJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public User startSession(User us) {
+        EntityManager em = getEntityManager();
+        User user = null;
+        String consulta;
+        try {
+            consulta = "FROM user u WHERE u.USERNAME = ?1 and u.PASSWORD = ?2";
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, us.getUserName());
+            query.setParameter(2, us.getPassword());
+
+            List<User> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                user = lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            em.close();
+        }
+        return user;
+    }
 }
