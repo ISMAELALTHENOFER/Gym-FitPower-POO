@@ -1,18 +1,20 @@
+package fitpower.controller;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-package fitpower;
-
 import fitpower.dao.Conexion;
+import fitpower.view.JFrameLogin;
 
 /**
  *
  * @author Ismael
  */
-public class GymFitPower {
+public class Main {
 
     public static void main(String[] args) {
         new Conexion();
-        System.out.println("Funciona!");
+        JFrameLogin vista = new JFrameLogin();
+        vista.arranca();
     }
 }
