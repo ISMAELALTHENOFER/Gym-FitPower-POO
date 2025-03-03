@@ -5,7 +5,8 @@
 package fitpower.dao;
 
 import fitpower.dao.exceptions.NonexistentEntityException;
-import fitpower.model.User;
+import fitpower.model.Users;
+import fitpower.model.UserType;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -30,12 +31,21 @@ public class UserJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(User user) {
+    public void create(Users user) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            UserType userType = user.getUserType();
+            if (userType != null) {
+                userType = em.getReference(userType.getClass(), userType.getId());
+                user.setUserType(userType);
+            }
             em.persist(user);
+            if (userType != null) {
+                userType.getUsers().add(user);
+                userType = em.merge(userType);
+            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -44,12 +54,28 @@ public class UserJpaController implements Serializable {
         }
     }
 
-    public void edit(User user) throws NonexistentEntityException, Exception {
+    public void edit(Users user) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Users persistentUsuario = em.find(Users.class, user.getId());
+            UserType tipoUsuarioOld = persistentUsuario.getUserType();
+            UserType tipoUsuarioNew = user.getUserType();
+            if (tipoUsuarioNew != null) {
+                tipoUsuarioNew = em.getReference(tipoUsuarioNew.getClass(), tipoUsuarioNew.getId());
+                user.setUserType(tipoUsuarioNew);
+            }
             user = em.merge(user);
+
+            if (tipoUsuarioOld != null && !tipoUsuarioOld.equals(tipoUsuarioNew)) {
+                tipoUsuarioOld.getUsers().remove(user);
+                tipoUsuarioOld = em.merge(tipoUsuarioOld);
+            }
+            if (tipoUsuarioNew != null && !tipoUsuarioNew.equals(tipoUsuarioOld)) {
+                tipoUsuarioNew.getUsers().add(user);
+                tipoUsuarioNew = em.merge(tipoUsuarioNew);
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -72,12 +98,17 @@ public class UserJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            User user;
+            Users user;
             try {
-                user = em.getReference(User.class, id);
+                user = em.getReference(Users.class, id);
                 user.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The user with id " + id + " no longer exists.", enfe);
+            }
+            UserType tipoUsuario = user.getUserType();
+            if (tipoUsuario != null) {
+                tipoUsuario.getUsers().remove(user);
+                tipoUsuario = em.merge(tipoUsuario);
             }
             em.remove(user);
             em.getTransaction().commit();
@@ -88,19 +119,19 @@ public class UserJpaController implements Serializable {
         }
     }
 
-    public List<User> findUserEntities() {
+    public List<Users> findUserEntities() {
         return findUserEntities(true, -1, -1);
     }
 
-    public List<User> findUserEntities(int maxResults, int firstResult) {
+    public List<Users> findUserEntities(int maxResults, int firstResult) {
         return findUserEntities(false, maxResults, firstResult);
     }
 
-    private List<User> findUserEntities(boolean all, int maxResults, int firstResult) {
+    private List<Users> findUserEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(User.class));
+            cq.select(cq.from(Users.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -112,10 +143,10 @@ public class UserJpaController implements Serializable {
         }
     }
 
-    public User findUser(Long id) {
+    public Users findUser(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(User.class, id);
+            return em.find(Users.class, id);
         } finally {
             em.close();
         }
@@ -125,7 +156,7 @@ public class UserJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<User> rt = cq.from(User.class);
+            Root<Users> rt = cq.from(Users.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -134,25 +165,75 @@ public class UserJpaController implements Serializable {
         }
     }
 
-    public User startSession(User us) {
+    public Users startSession(Users us) {
         EntityManager em = getEntityManager();
-        User user = null;
+        Users usuario = null;
         String consulta;
         try {
-            consulta = "FROM user u WHERE u.USERNAME = ?1 and u.PASSWORD = ?2";
-            Query query = em.createQuery(consulta);
-            query.setParameter(1, us.getUserName());
-            query.setParameter(2, us.getPassword());
+            System.out.println("Iniciando el método startSession...");
+            System.out.println("Datos del usuario: username = " + us.getUsername() + ", password = " + us.getPassword());
 
-            List<User> lista = query.getResultList();
+            consulta = "FROM Users u WHERE u.username = :username AND u.password = :password";
+            Query query = em.createQuery(consulta);
+            query.setParameter("username", us.getUsername());
+            query.setParameter("password", us.getPassword());
+
+            System.out.println("Ejecutando la consulta JPQL...");
+            List<Users> lista = query.getResultList();
+            System.out.println("Consulta ejecutada. Tamaño de la lista: " + lista.size());
+
             if (!lista.isEmpty()) {
-                user = lista.get(0);
+                usuario = lista.get(0);
+                System.out.println("Usuario encontrado: " + usuario.getUsername());
+            } else {
+                System.out.println("No se encontró ningún usuario con las credenciales proporcionadas.");
             }
         } catch (Exception e) {
+            System.err.println("Error en el método startSession: " + e.getMessage());
+            e.printStackTrace();
             throw e;
         } finally {
-            em.close();
+            if (em != null) {
+                em.close();
+                System.out.println("EntityManager cerrado.");
+            }
         }
-        return user;
+        return usuario;
     }
+
+    public Users verifyUser(Users us) {
+        EntityManager em = getEntityManager();
+        Users usuario = null;
+        String consulta;
+        try {
+            System.out.println("Iniciando el método verifyUser...");
+            System.out.println("Datos del usuario: username = " + us.getUsername());
+
+            consulta = "FROM Users u WHERE u.username = :userName";
+            Query query = em.createQuery(consulta);
+            query.setParameter("userName", us.getUsername());
+
+            System.out.println("Ejecutando la consulta JPQL...");
+            List<Users> lista = query.getResultList();
+            System.out.println("Consulta ejecutada. Tamaño de la lista: " + lista.size());
+
+            if (!lista.isEmpty()) {
+                usuario = lista.get(0);
+                System.out.println("Usuario encontrado: " + usuario.getUsername());
+            } else {
+                System.out.println("No se encontró ningún usuario con el username proporcionado.");
+            }
+        } catch (Exception e) {
+            System.err.println("Error en el método verifyUser: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (em != null) {
+                em.close();
+                System.out.println("EntityManager cerrado.");
+            }
+        }
+        return usuario;
+    }
+
 }

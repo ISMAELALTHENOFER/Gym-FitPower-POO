@@ -5,6 +5,7 @@
 package fitpower.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,8 +22,14 @@ public class Gym implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "name")
     private String name;
+    
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "phone")
     private String phone;
 
     public Gym() {

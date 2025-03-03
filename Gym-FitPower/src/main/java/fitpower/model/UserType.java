@@ -5,10 +5,13 @@
 package fitpower.model;
 
 import java.io.Serializable;
+import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -21,7 +24,12 @@ public class UserType implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "description")
     private String description;
+
+    @OneToMany(mappedBy = "userType")
+    private Set<Users> users;
 
     public UserType() {
     }
@@ -70,6 +78,14 @@ public class UserType implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Users> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<Users> users) {
+        this.users = users;
     }
 
 }

@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Clase JFrameBienvenida
+ * Clase JFrameWelcome
  *
  * @author Ismael
  */
@@ -35,6 +35,7 @@ public class JFrameWelcome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        text = new javax.swing.JLabel();
         barra = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
 
@@ -48,6 +49,9 @@ public class JFrameWelcome extends javax.swing.JFrame {
             }
         });
 
+        text.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        text.setForeground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -55,14 +59,19 @@ public class JFrameWelcome extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(text, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(270, 270, 270)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(text, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -92,6 +101,26 @@ public class JFrameWelcome extends javax.swing.JFrame {
                     barra.setForeground(new Color(220, 118, 51));
                     repaint();
 
+                    switch (auxiliar) {
+                        case 3:
+                            text.setText("Empleado Verificado "+LoginController.getInstanceUsuario().getUsername());
+
+                            break;
+                        case 20:
+                            text.setText("Cargando programa...");
+
+                            break;
+                        case 50:
+                            text.setText("Acceso Autorizado");
+                            break;
+                        case 60:
+                            JFrameWelcome.this.setVisible(false);
+                            main1 sistema = new main1();                           
+                          //  sistema.arranca();                            
+                            JFrameWelcome.this.dispose();
+                            break;
+
+                    }
                     Thread.sleep(100);
                 }
             } catch (InterruptedException ex) {
@@ -102,5 +131,6 @@ public class JFrameWelcome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar barra;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel text;
     // End of variables declaration//GEN-END:variables
 }

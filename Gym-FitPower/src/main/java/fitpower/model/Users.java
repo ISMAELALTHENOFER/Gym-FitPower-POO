@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,28 +19,35 @@ import javax.persistence.Table;
  * @author Ismael
  */
 @Entity
-@Table(name = "user")
-public class User implements Serializable {
+@Table(name = "Users")
+public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "USERNAME")
-    private String userName;
-    @Column(name = "PASSWORD")
+    
+    @Column(name = "username") // Nombre de la columna en la BD
+    private String username;
+    
+    @Column(name = "password")
     private String password;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_userType")
     private UserType userType;
 
-    public User() {
+    public Users() {
     }
 
-    public User(Long id, String userName, String password, UserType userType) {
+    public Users(Long id, String username, String password, UserType userType) {
         this.id = id;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.userType = userType;
     }
+
+  
 
     @Override
     public int hashCode() {
@@ -50,10 +59,10 @@ public class User implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
+        if (!(object instanceof Users)) {
             return false;
         }
-        User other = (User) object;
+        Users other = (Users) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -73,12 +82,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -97,4 +106,5 @@ public class User implements Serializable {
         this.userType = userType;
     }
 
+   
 }

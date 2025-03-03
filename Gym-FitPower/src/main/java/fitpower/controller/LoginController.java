@@ -7,7 +7,7 @@ package fitpower.controller;
 
 import fitpower.dao.Conexion;
 import fitpower.dao.UserJpaController;
-import fitpower.model.User;
+import fitpower.model.Users;
 
 /**
  * Controlador de Login de Usuario
@@ -19,7 +19,7 @@ public class LoginController {
     private final UserJpaController userDAO;
 
     //Model
-    private static User verifyUser = null;
+    private static Users verifyUser = null;
 
     public LoginController() {
         //Inicializacion de DAO
@@ -32,7 +32,7 @@ public class LoginController {
      */
     private synchronized static void createInstanceUsuario() {
         if (verifyUser == null) {
-            verifyUser = new User();
+            verifyUser = new Users();
         }
     }
 
@@ -41,7 +41,7 @@ public class LoginController {
      *
      * @return
      */
-    public static User getInstanceUsuario() {
+    public static Users getInstanceUsuario() {
         createInstanceUsuario();
         return verifyUser;
     }
@@ -54,12 +54,20 @@ public class LoginController {
      * @param unUsuario
      * @return
      */
-    public boolean startSession(User unUsuario) {
+    public boolean startSession(Users unUsuario) {
         boolean estado = false;
+        System.out.println("Iniciando sesión para el usuario: " + unUsuario.getUsername());
+        
+        // Llamada al método DAO
         verifyUser = userDAO.startSession(unUsuario);
-        if (verifyUser != null) {
 
+        if (verifyUser != null) {
+            System.out.println("Inicio de sesión exitoso. Usuario encontrado: " + verifyUser.getUsername());
+            estado = true;
+        } else {
+            System.out.println("Error: Usuario o contraseña incorrectos.");
         }
+
         return estado;
     }
 
