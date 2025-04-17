@@ -103,7 +103,7 @@ public class JFrameWelcome extends javax.swing.JFrame {
 
                     switch (auxiliar) {
                         case 3:
-                            text.setText("Empleado Verificado "+LoginController.getInstanceUsuario().getUsername());
+                            text.setText("Usuario Verificado "+LoginController.getInstanceUsuario().getUsername());
 
                             break;
                         case 20:
@@ -115,7 +115,7 @@ public class JFrameWelcome extends javax.swing.JFrame {
                             break;
                         case 60:
                             JFrameWelcome.this.setVisible(false);
-                            main1 sistema = new main1();                           
+                            JFrameAdmin sistema = new JFrameAdmin();                           
                           //  sistema.arranca();                            
                             JFrameWelcome.this.dispose();
                             break;
