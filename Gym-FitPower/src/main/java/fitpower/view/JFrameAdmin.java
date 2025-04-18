@@ -7,12 +7,14 @@ package fitpower.view;
 public class JFrameAdmin extends javax.swing.JFrame {
 
     private JPanelCustomer jPanelCustomer;
-            
+    private JPanelGym jPanelGym;
+    private JPanelRoutine jPanelRoutine;
+
     public JFrameAdmin() {
         initComponents();
         this.setVisible(true);
         this.setSize(1200, 650);
-         this.setLocationRelativeTo(null); 
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -25,11 +27,18 @@ public class JFrameAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        CrudCustomer = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        JCustomer = new javax.swing.JMenu();
+        CrudCustomer = new javax.swing.JMenuItem();
+        JRotine = new javax.swing.JMenu();
+        CrudRoutine = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+        Gym = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        JCustomer.setText("Clientes");
 
         CrudCustomer.setText("Gestionar Clientes");
         CrudCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -37,29 +46,35 @@ public class JFrameAdmin extends javax.swing.JFrame {
                 CrudCustomerActionPerformed(evt);
             }
         });
+        JCustomer.add(CrudCustomer);
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar1.add(JCustomer);
+
+        JRotine.setText("Rutinas");
+
+        CrudRoutine.setText("Gestionar Rutinas");
+        CrudRoutine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                CrudRoutineActionPerformed(evt);
             }
         });
-        CrudCustomer.add(jMenuItem1);
+        JRotine.add(CrudRoutine);
 
-        jMenuBar1.add(CrudCustomer);
+        jMenuBar1.add(JRotine);
 
-        jMenu1.setText("jMenu1");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
-            }
-        });
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
-            }
-        });
+        jMenu1.setText("Gym");
+
+        Gym.setText("Gestionar Gym");
+        jMenu1.add(Gym);
+
         jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Nutricionista");
+
+        jMenuItem1.setText("Gestionar Planes de Nutricion");
+        jMenu2.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -78,26 +93,31 @@ public class JFrameAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CrudCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrudCustomerActionPerformed
-    }//GEN-LAST:event_CrudCustomerActionPerformed
-
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-    }//GEN-LAST:event_jMenu1ActionPerformed
-
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-    }//GEN-LAST:event_jMenu1MouseClicked
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       getContentPane().removeAll(); // Remover todos los componentes actuales
+        getContentPane().removeAll(); // Remover todos los componentes actuales
         this.jPanelCustomer = new JPanelCustomer();//crea un nuevo objeto
         this.jPanelCustomer.setSize(480, 480);//da tamaño al panel
         this.add(this.jPanelCustomer); //agrega con add al frame
         jPanelCustomer.repaint();//Repinta el panel para mejor funcionamiento
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
- 
+
+    }//GEN-LAST:event_CrudCustomerActionPerformed
+
+    private void CrudRoutineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrudRoutineActionPerformed
+        getContentPane().removeAll(); // Remover todos los componentes actuales
+        this.jPanelRoutine = new JPanelRoutine();//crea un nuevo objeto
+        this.jPanelRoutine.setSize(480, 480);//da tamaño al panel
+        this.add(this.jPanelRoutine); //agrega con add al frame
+        jPanelRoutine.repaint();//Repinta el panel para mejor funcionamiento
+    }//GEN-LAST:event_CrudRoutineActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu CrudCustomer;
+    private javax.swing.JMenuItem CrudCustomer;
+    private javax.swing.JMenuItem CrudRoutine;
+    private javax.swing.JMenuItem Gym;
+    private javax.swing.JMenu JCustomer;
+    private javax.swing.JMenu JRotine;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables

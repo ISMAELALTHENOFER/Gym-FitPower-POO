@@ -1,28 +1,20 @@
 package fitpower.view;
 
-import fitpower.controller.CustomerController;
-import fitpower.view.resource.TablaPersonaModelo;
 import java.awt.Color;
 
 /**
  *
  * @author Ismael
  */
-public class JPanelCustomer extends javax.swing.JPanel implements InterfacePanel {
+public class JPanelRoutine extends javax.swing.JPanel implements InterfacePanel {
 
-    private final FieldValidator validador;
-    private String crud;
-    private final CustomerController controlador;
-    private final TablaPersonaModelo tablaPersonaModelo;
-
-    public JPanelCustomer() {
+      private final FieldValidator validador;
+       private String crud;
+    
+    
+    public JPanelRoutine() {
         initComponents();
-        this.tablaPersonaModelo = new TablaPersonaModelo();
-
         this.validador = new FieldValidator();
-        //iniciar el controlador de esta vista
-        this.controlador = new CustomerController();
-        setSize(800, 600);
     }
 
     /**
@@ -34,19 +26,9 @@ public class JPanelCustomer extends javax.swing.JPanel implements InterfacePanel
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPaneTabla = new javax.swing.JScrollPane();
-        jtb_persona = new javax.swing.JTable();
         jbtn_listar = new javax.swing.JButton();
         jtf_buscarPersona = new javax.swing.JTextField();
         jbtn_agregar = new javax.swing.JButton();
-
-        jScrollPaneTabla.setMaximumSize(new java.awt.Dimension(950, 750));
-        jScrollPaneTabla.setMinimumSize(new java.awt.Dimension(950, 750));
-        jScrollPaneTabla.setPreferredSize(new java.awt.Dimension(950, 750));
-
-        jtb_persona.setModel(tablaPersonaModelo);
-        jScrollPaneTabla.setViewportView(jtb_persona);
 
         jbtn_listar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jbtn_listar.setText("LISTAR POR DNI");
@@ -76,54 +58,41 @@ public class JPanelCustomer extends javax.swing.JPanel implements InterfacePanel
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPaneTabla, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jbtn_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtf_buscarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPaneTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtn_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtf_buscarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 32, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 819, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jbtn_listar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(27, 27, 27)
+                    .addComponent(jtf_buscarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jbtn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 196, Short.MAX_VALUE))
+            .addGap(0, 611, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(289, 289, 289)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbtn_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtf_buscarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(290, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtn_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_listarActionPerformed
         //Actualizar el TableModel con la lista del controlador
-        this.tablaPersonaM.setPersonas(this.controlador.buscarTodasLasPersonas());
+       // this.tablaPersonaModelo.setPersonas(this.controlador.buscarTodasLasPersonas());
 
         //Refrescar el modelo en la tabla
-        this.tablaPersonaModelo.fireTableDataChanged();
+      //   this.tablaPersonaModelo.fireTableDataChanged();
 
         limpiarTodosLosCampos();
         habilitarTodosLosCampos(false);
@@ -133,15 +102,15 @@ public class JPanelCustomer extends javax.swing.JPanel implements InterfacePanel
         this.validador.habilitarBoton(true, this.jbtn_listar, new Color(30, 132, 73), Color.WHITE, null, null);
         this.validador.habilitarCampo(true, this.jtf_buscarPersona);
 
-        this.personaSeleccionada = null;
+       // this.personaSeleccionada = null;
     }//GEN-LAST:event_jbtn_listarActionPerformed
 
     private void jtf_buscarPersonaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtf_buscarPersonaFocusGained
         if (this.jtf_buscarPersona.isEditable()) {
-            this.tablaPersonaModelo.setPersonas(this.controlador.buscarTodasLasPersonas());
+       //     this.tablaPersonaModelo.setPersonas(this.controlador.buscarTodasLasPersonas());
 
             //Refrescar el modelo en la tabla
-            this.tablaPersonaModelo.fireTableDataChanged();
+        //    this.tablaPersonaModelo.fireTableDataChanged();
 
             limpiarTodosLosCampos();
             habilitarTodosLosCampos(false);
@@ -151,7 +120,7 @@ public class JPanelCustomer extends javax.swing.JPanel implements InterfacePanel
             this.validador.habilitarBoton(true, this.jbtn_listar, new Color(30, 132, 73), Color.WHITE, null, null);
             this.validador.habilitarCampo(true, this.jtf_buscarPersona);
 
-            this.personaSeleccionada = null;
+       /*     this.personaSeleccionada = null;
 
             this.jtb_persona.setEnabled(true);
 
@@ -159,23 +128,23 @@ public class JPanelCustomer extends javax.swing.JPanel implements InterfacePanel
             this.jlbl_alertaApellido.setIcon(null);
             this.jlbl_alertaDNI.setIcon(null);
 
-            this.jlbl_mensaje.setText("");
+            this.jlbl_mensaje.setText("");*/
         }
     }//GEN-LAST:event_jtf_buscarPersonaFocusGained
 
     private void jtf_buscarPersonaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_buscarPersonaKeyReleased
         if (this.jtf_buscarPersona.isEditable()) {
             //Actualizar el TableModel con la lista del controlador
-            this.tablaPersonaModelo.setPersonas(this.controlador.buscarPersonasPorDNI(this.jtf_buscarPersona.getText()));
+          /*  this.tablaPersonaModelo.setPersonas(this.controlador.buscarPersonasPorDNI(this.jtf_buscarPersona.getText()));
 
             //Refrescar el modelo en la tabla
-            this.tablaPersonaModelo.fireTableDataChanged();
+            this.tablaPersonaModelo.fireTableDataChanged();*/
         }
     }//GEN-LAST:event_jtf_buscarPersonaKeyReleased
 
     private void jbtn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_agregarActionPerformed
         this.crud = "agregar";
-        this.validador.limpiarCampo(this.jtf_nombre);
+       /* this.validador.limpiarCampo(this.jtf_nombre);
         this.validador.limpiarCampo(this.jtf_apellido);
         this.validador.limpiarCampo(this.jtf_dni);
         this.validador.limpiarCampo(this.jtf_buscarPersona);
@@ -187,16 +156,13 @@ public class JPanelCustomer extends javax.swing.JPanel implements InterfacePanel
         this.validador.habilitarBoton(false, this.jbtn_agregar, new Color(30, 132, 73), Color.WHITE, null, null);
         this.validador.habilitarCampo(false, this.jtf_buscarPersona);
 
-        this.jtb_persona.setEnabled(false);
+        this.jtb_persona.setEnabled(false);*/
     }//GEN-LAST:event_jbtn_agregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPaneTabla;
     private javax.swing.JButton jbtn_agregar;
     private javax.swing.JButton jbtn_listar;
-    private javax.swing.JTable jtb_persona;
     private javax.swing.JTextField jtf_buscarPersona;
     // End of variables declaration//GEN-END:variables
 
