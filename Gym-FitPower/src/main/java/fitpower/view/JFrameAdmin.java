@@ -1,5 +1,7 @@
 package fitpower.view;
 
+import java.awt.BorderLayout;
+
 /**
  *
  * @author Ismael
@@ -94,10 +96,10 @@ public class JFrameAdmin extends javax.swing.JFrame {
 
     private void CrudCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrudCustomerActionPerformed
         getContentPane().removeAll(); // Remover todos los componentes actuales
-        this.jPanelCustomer = new JPanelCustomer();//crea un nuevo objeto
-        this.jPanelCustomer.setSize(480, 480);//da tamaño al panel
-        this.add(this.jPanelCustomer); //agrega con add al frame
-        jPanelCustomer.repaint();//Repinta el panel para mejor funcionamiento
+        this.jPanelCustomer = new JPanelCustomer(); // Crea un nuevo objeto
+        this.jPanelCustomer.setSize(this.getWidth(), this.getHeight()); // Ajustar al tamaño del JFrame
+        this.add(this.jPanelCustomer, BorderLayout.CENTER); // Coloca el panel al centro
+        jPanelCustomer.repaint(); // Repinta el panel para mejor funcionamiento
 
     }//GEN-LAST:event_CrudCustomerActionPerformed
 

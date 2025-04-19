@@ -1,8 +1,12 @@
 package fitpower.view;
 
 import fitpower.controller.CustomerController;
-import fitpower.view.resource.TablaPersonaModelo;
+import fitpower.model.Customer;
+import fitpower.view.resource.TableCustomerModel;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -11,18 +15,32 @@ import java.awt.Color;
 public class JPanelCustomer extends javax.swing.JPanel implements InterfacePanel {
 
     private final FieldValidator validador;
-    private String crud;
+
+    //variables de tabla
+    private final TableCustomerModel tablaPersonaModelo;
+
+    //variables de comboBox
+    private DefaultComboBoxModel tipoPersonaModel;
+
     private final CustomerController controlador;
-    private final TablaPersonaModelo tablaPersonaModelo;
+    private Customer personaSeleccionada;
+    private final List<Customer> personas;
+    private String crud;
 
     public JPanelCustomer() {
-        initComponents();
-        this.tablaPersonaModelo = new TablaPersonaModelo();
-
+        //JTable vacio
+        this.tablaPersonaModelo = new TableCustomerModel();
         this.validador = new FieldValidator();
-        //iniciar el controlador de esta vista
+        //JComboBox vacio
+        this.tipoPersonaModel = new DefaultComboBoxModel();
+        this.crud = "";
+
+        this.personas = new ArrayList<>();
         this.controlador = new CustomerController();
-        setSize(800, 600);
+
+        initComponents();
+        this.setSize(1200, 800); // Ajusta el tamaño del JFrame para que sea más grande
+
     }
 
     /**
@@ -81,16 +99,16 @@ public class JPanelCustomer extends javax.swing.JPanel implements InterfacePanel
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPaneTabla, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jbtn_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtf_buscarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jbtn_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jtf_buscarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbtn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(171, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPaneTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,19 +126,19 @@ public class JPanelCustomer extends javax.swing.JPanel implements InterfacePanel
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 196, Short.MAX_VALUE))
+                .addGap(0, 288, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtn_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_listarActionPerformed
         //Actualizar el TableModel con la lista del controlador
-        this.tablaPersonaM.setPersonas(this.controlador.buscarTodasLasPersonas());
+        this.tablaPersonaModelo.setPersonas(this.controlador.buscarTodasLasPersonas());
 
         //Refrescar el modelo en la tabla
         this.tablaPersonaModelo.fireTableDataChanged();
@@ -155,11 +173,6 @@ public class JPanelCustomer extends javax.swing.JPanel implements InterfacePanel
 
             this.jtb_persona.setEnabled(true);
 
-            this.jlbl_alertaNombre.setIcon(null);
-            this.jlbl_alertaApellido.setIcon(null);
-            this.jlbl_alertaDNI.setIcon(null);
-
-            this.jlbl_mensaje.setText("");
         }
     }//GEN-LAST:event_jtf_buscarPersonaFocusGained
 
@@ -175,15 +188,10 @@ public class JPanelCustomer extends javax.swing.JPanel implements InterfacePanel
 
     private void jbtn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_agregarActionPerformed
         this.crud = "agregar";
-        this.validador.limpiarCampo(this.jtf_nombre);
-        this.validador.limpiarCampo(this.jtf_apellido);
-        this.validador.limpiarCampo(this.jtf_dni);
         this.validador.limpiarCampo(this.jtf_buscarPersona);
         habilitarTodosLosBotones(false);
         habilitarTodosLosCampos(true);
         this.validador.habilitarBoton(false, this.jbtn_listar, new Color(30, 132, 73), Color.WHITE, null, null);
-        this.validador.habilitarBoton(true, this.jbtn_aceptar, new Color(30, 132, 73), Color.WHITE, null, null);
-        this.validador.habilitarBoton(true, this.jbtn_cancelar, Color.red, Color.WHITE, null, null);
         this.validador.habilitarBoton(false, this.jbtn_agregar, new Color(30, 132, 73), Color.WHITE, null, null);
         this.validador.habilitarCampo(false, this.jtf_buscarPersona);
 
@@ -202,16 +210,19 @@ public class JPanelCustomer extends javax.swing.JPanel implements InterfacePanel
 
     @Override
     public void habilitarTodosLosCampos(boolean estado) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        jtf_buscarPersona.setEnabled(estado);
+        // Cuando tengas más campos, los agregás acá
     }
 
     @Override
     public void limpiarTodosLosCampos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        jtf_buscarPersona.setText("");
     }
 
     @Override
     public void habilitarTodosLosBotones(boolean estado) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        jbtn_agregar.setEnabled(estado);
+        jbtn_listar.setEnabled(estado);
+        // Idem, si sumás más botones
     }
 }

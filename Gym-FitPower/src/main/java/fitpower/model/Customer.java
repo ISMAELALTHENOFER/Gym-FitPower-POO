@@ -26,7 +26,7 @@ public class Customer implements Serializable {
     private String lastName;
     private String dni;
     private String email;
-    private List<String> goal;
+    private String goal;
     private Gym gym;
     private List<NotificationTraining> notificationsTrainings;
     private List<NotificationNutrition> notificationNutritions;
@@ -36,7 +36,7 @@ public class Customer implements Serializable {
     public Customer() {
     }
 
-    public Customer(Long id, String name, String lastName, String dni, String email, List<String> goal, Gym gym, List<NotificationTraining> notificationsTrainings, List<NotificationNutrition> notificationNutritions, List<Routine> routines, List<NutritionPlan> nutritionPlans) {
+    public Customer(Long id, String name, String lastName, String dni, String email, String goal, Gym gym, List<NotificationTraining> notificationsTrainings, List<NotificationNutrition> notificationNutritions, List<Routine> routines, List<NutritionPlan> nutritionPlans) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -99,14 +99,6 @@ public class Customer implements Serializable {
         this.lastName = lastName;
     }
 
-    public List<String> getGoal() {
-        return goal;
-    }
-
-    public void setGoal(List<String> goal) {
-        this.goal = goal;
-    }
-
     public Gym getGym() {
         return gym;
     }
@@ -161,6 +153,14 @@ public class Customer implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getGoal() {
+        return goal;
+    }
+
+    public void setGoal(String goal) {
+        this.goal = goal;
     }
 
 }

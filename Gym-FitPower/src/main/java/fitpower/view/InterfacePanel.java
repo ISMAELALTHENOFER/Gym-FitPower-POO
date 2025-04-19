@@ -8,7 +8,7 @@ package fitpower.view;
 
 /**
  *
- * @author Ariel
+ * @author Ismael
  */
 public interface InterfacePanel {
     
