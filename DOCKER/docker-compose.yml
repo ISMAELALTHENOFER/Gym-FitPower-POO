@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Cuenta.1234
+      MYSQL_DATABASE: gym  # Opcional: crea una base de datos al iniciar
+      MYSQL_USER: admin             # Opcional: crea un usuario adicional
+      MYSQL_PASSWORD: admin    # Opcional: contraseña para el usuario adicional
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql      # Persiste los datos entre reinicios
+    command:
+      - --default-authentication-plugin=mysql_native_password  # Para compatibilidad con clientes antiguos
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    networks:
+      - mysql_network
+
+networks:
+  mysql_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
