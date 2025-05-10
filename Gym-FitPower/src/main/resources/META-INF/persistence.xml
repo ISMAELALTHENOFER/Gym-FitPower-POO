@@ -16,9 +16,9 @@
     <class>fitpower.model.Serie</class>
     <class>fitpower.model.Trainer</class>
     <class>fitpower.model.TrainingPlan</class>
+    <class>fitpower.model.User</class>
     <class>fitpower.model.UserType</class>
     <class>fitpower.model.Users</class>
-    <shared-cache-mode>ALL</shared-cache-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gym?zeroDateTimeBehavior=CONVERT_TO_NULL&amp;serverTimezone=America/Argentina/Buenos_Aires"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
